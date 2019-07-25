@@ -24,6 +24,8 @@ public class Reduce {
         throw new NotImplementedException();
     }
 
+    public double getMedian() { throw new NotImplementedException(); }
+
     public double getOrderedMedian() {
         throw new NotImplementedException();
     }
@@ -40,9 +42,7 @@ public class Reduce {
         throw new NotImplementedException();
     }
 
-    public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
-    }
+
 
     public int getLastOdd() {
         throw new NotImplementedException();

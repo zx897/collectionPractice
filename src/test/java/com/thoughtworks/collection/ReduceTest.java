@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
 
 public class ReduceTest {
 
@@ -61,29 +60,23 @@ public class ReduceTest {
     }
 
     @Test
-    public void should_get_element_in_middle_position_in_linkList_when_even_size() {
+    public void should_get_element_in_middle_position_when_even_size() {
+        // 获取偶数数组的中位数
         Integer[] array = new Integer[]{1, 4, 6, 2, 3, 10, 9, 8, 11, 2, 19, 30};
         List<Integer> arrayList = Arrays.asList(array);
-
-        SingleLink<Integer> singleLink = mock(SingleLink.class);
-        when(singleLink.getNode(6)).thenReturn(10);
-        when(singleLink.getNode(7)).thenReturn(9);
-
         Reduce reduce = new Reduce(arrayList);
 
-        assertThat(reduce.getMedianInLinkList(singleLink)).isEqualTo(9.5);
+        assertThat(reduce.getMedian()).isEqualTo(9.5);
     }
 
     @Test
-    public void should_get_element_in_middle_position_in_linkList_when_odd_size() {
+    public void should_get_element_in_middle_position_when_odd_size() {
+        // 获取奇数数组的中位数
         Integer[] array = new Integer[]{1, 4, 6, 2, 3, 10, 9, 8, 11, 2, 19};
         List<Integer> arrayList = Arrays.asList(array);
 
-        SingleLink<Integer> singleLink = mock(SingleLink.class);
-        when(singleLink.getNode(6)).thenReturn(10);
-
         Reduce reduce = new Reduce(arrayList);
-        assertThat(reduce.getMedianInLinkList(singleLink)).isEqualTo(10);
+        assertThat(reduce.getMedian()).isEqualTo(10);
     }
 
     @Test
