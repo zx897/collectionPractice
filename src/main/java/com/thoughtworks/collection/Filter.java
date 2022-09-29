@@ -1,9 +1,8 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Filter {
 
@@ -13,19 +12,47 @@ public class Filter {
      this.array = array;
     }
 
-    public List<Integer> filterEven() {
-        throw new NotImplementedException();
+    private boolean isEven(int number){
+        return (number & 1) == 0;
+    }
+
+    public List<Integer> filterEven(){
+        List<Integer> filterEvenList = new ArrayList<>();
+        for(Integer anArrayList : this.array){
+            if(isEven(anArrayList)){
+                filterEvenList.add(anArrayList);
+            }
+        }
+        return filterEvenList;
     }
 
     public List<Integer> filterMultipleOfThree() {
-        throw new NotImplementedException();
+        List<Integer> filterMultipleOfThreeList = new ArrayList<>();
+        for(Integer anArrayList : this.array){
+            if(anArrayList % 3 == 0){
+                filterMultipleOfThreeList.add(anArrayList);
+            }
+        }
+        return filterMultipleOfThreeList;
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        throw new NotImplementedException();
+        ArrayList<Integer> commonElementsList = new ArrayList<>();
+        for(Integer number : secondList){
+            if(firstList.contains(number)){
+                commonElementsList.add(number);
+            }
+        }
+        return commonElementsList;
     }
 
     public List<Integer> getDifferentElements() {
-        throw new NotImplementedException();
+        ArrayList<Integer> commonElementsList = new ArrayList<>();
+        for(Integer number : this.array){
+            if(!commonElementsList.contains(number)){
+                commonElementsList.add(number);
+            }
+        }
+        return commonElementsList;
     }
 }
