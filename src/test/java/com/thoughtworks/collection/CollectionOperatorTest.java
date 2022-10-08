@@ -83,11 +83,12 @@ public class CollectionOperatorTest {
     @Test
     public void should_add_uncommon_elements_to_first_array() {
         // 将集合二中与集合一不同的元素加入集合一
+
         Integer[] firstArray = new Integer[]{1, 2, 4, 6, 10};
         Integer[] secondArray = new Integer[]{3, 2, 6, 10, 8};
-
         Integer[] result = new Integer[]{1, 2, 4, 6, 10, 3, 8};
         List<Integer> resultList = Arrays.asList(result);
+
 
         CollectionOperator collectionOperator = new CollectionOperator();
         assertThat(collectionOperator.addUncommonElement(firstArray, secondArray).size()).isEqualTo(7);
