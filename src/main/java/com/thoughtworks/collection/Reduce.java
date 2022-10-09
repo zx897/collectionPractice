@@ -12,18 +12,15 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        int maxNumber = this.arrayList.stream().mapToInt(Integer::intValue).max().getAsInt();
-        return maxNumber;
+        return this.arrayList.stream().mapToInt(Integer::intValue).max().orElse(0);
     }
 
     public double getMinimum() {
-        int minNumber  = this.arrayList.stream().mapToInt(Integer::intValue).min().getAsInt();
-        return minNumber;
+        return this.arrayList.stream().mapToInt(Integer::intValue).min().orElse(0);
     }
 
     public double getAverage() {
-        double averageNumber = this.arrayList.stream().mapToInt((x) -> x).summaryStatistics().getAverage();
-        return averageNumber;
+        return this.arrayList.stream().mapToInt(x -> x).summaryStatistics().getAverage();
     }
 
     public double getMedian() {
@@ -40,8 +37,7 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        int firstEven = this.arrayList.stream().filter(x -> x%2 == 0).findFirst().get();
-        return firstEven;
+        return this.arrayList.stream().filter(x -> x % 2 == 0).findFirst().orElse(0);
     }
 
     public int getIndexOfFirstEven() {
@@ -56,7 +52,7 @@ public class Reduce {
 
     public boolean isEqual(List<Integer> arrayList) {
         return this.arrayList.equals(arrayList);
-        }
+    }
 
     public int getLastOdd() {
         int temp = this.arrayList.get(0);

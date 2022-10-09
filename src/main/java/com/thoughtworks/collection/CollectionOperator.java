@@ -1,10 +1,12 @@
 package com.thoughtworks.collection;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class CollectionOperator {
@@ -15,13 +17,17 @@ public class CollectionOperator {
             int temp = left;
             left = right;
             right = temp;
-        }
-        IntStream
+            IntStream
                 .range(left, right + 1)
-                .forEach(number -> listByInterval.add(Integer.valueOf(number)));
-        if (left > right) {
+                .forEach(listByInterval::add);
             Collections.reverse(listByInterval);
+
+
         }
+        else{
+            IntStream
+                .range(left, right + 1)
+                .forEach(listByInterval::add);}
         return listByInterval;
 
     }
@@ -40,8 +46,7 @@ public class CollectionOperator {
 
             Collections.reverse(evenListByIntervals);
 
-        }
-        else{
+        } else {
             IntStream
                     .range(left, right + 1)
                     .filter(i -> i % 2 == 0)
@@ -54,9 +59,9 @@ public class CollectionOperator {
 
         List<Integer> listByInterval = new ArrayList<>();
         Arrays
-            .stream(array)
-            .filter(i -> i % 2 == 0)
-            .forEach(student -> listByInterval.add(student));
+                .stream(array)
+                .filter(i -> i % 2 == 0)
+                .forEach(listByInterval::add);
         return listByInterval;
 
     }
@@ -65,17 +70,18 @@ public class CollectionOperator {
         return Arrays
                 .stream(array)
                 .reduce((first, second) -> second)
-                .getAsInt();
-        }
+//                .getAsInt()
+                .orElse(0);
+
+
+    }
 
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-//        List<Integer> secondArrayList = Stream.of(secondArray).boxed().collect(Collectors.toList());
-
         IntStream stream = Arrays.stream(secondArray);
-        List<Integer> secondArrayList= stream.boxed().collect(Collectors.toList());
+        List<Integer> secondArrayList = stream.boxed().collect(Collectors.toList());
 
-        return Arrays.stream(firstArray).filter(item -> secondArrayList.contains(item)).boxed().collect(Collectors.toList());
+        return Arrays.stream(firstArray).filter(secondArrayList::contains).boxed().collect(Collectors.toList());
 
     }
 

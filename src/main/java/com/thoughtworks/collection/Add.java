@@ -2,7 +2,6 @@ package com.thoughtworks.collection;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,38 +13,29 @@ public class Add {
         return ((number & 1) == 0);
     }
 
-    private List<Integer> getIntegerList(int leftBorder, int rightBorder){
-        ArrayList<Integer> integerList = new ArrayList<>();
-        for (int i = leftBorder + 1; i < rightBorder; i++) {
-            integerList.add(i);
-            }
-        return integerList;
-    }
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        List<Integer> integerList = getIntegerList(leftBorder,rightBorder);
-        if(leftBorder > rightBorder){
+        if (leftBorder > rightBorder) {
             int temp = leftBorder;
             leftBorder = rightBorder;
             rightBorder = temp;
         }
         return (int) IntStream
-                .range(leftBorder, rightBorder+1)
-                .filter(number->isEven(number))
+                .range(leftBorder, rightBorder + 1)
+                .filter(this::isEven)
                 .summaryStatistics()
                 .getSum();
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        List<Integer> integerList = getIntegerList(leftBorder,rightBorder);
-        if(leftBorder > rightBorder){
+        if (leftBorder > rightBorder) {
             int temp = leftBorder;
             leftBorder = rightBorder;
             rightBorder = temp;
         }
         return (int) IntStream
-                .range(leftBorder, rightBorder+1)
-                .filter(number->!isEven(number))
+                .range(leftBorder, rightBorder + 1)
+                .filter(number -> !isEven(number))
                 .summaryStatistics()
                 .getSum();
     }
@@ -54,7 +44,7 @@ public class Add {
         return (int) arrayList
                 .stream()
                 .map(number -> number * 3 + 2)
-                .mapToInt((x) -> x)
+                .mapToInt(x -> x)
                 .summaryStatistics()
                 .getSum();
 
@@ -62,8 +52,7 @@ public class Add {
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
         List<Integer> tripleOfOddAndAddTwo = new ArrayList<>();
-          arrayList
-                .stream()
+        arrayList
                 .forEach(number -> tripleOfOddAndAddTwo.add(isEven(number) ? number : (number * 3 + 2)));
         return tripleOfOddAndAddTwo;
 
@@ -72,9 +61,9 @@ public class Add {
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
         return (int) arrayList
                 .stream()
-                .filter(number ->!isEven(number))
+                .filter(number -> !isEven(number))
                 .map(number -> number * 3 + 5)
-                .mapToInt((x) -> x)
+                .mapToInt(x -> x)
                 .summaryStatistics()
                 .getSum();
     }
@@ -84,20 +73,20 @@ public class Add {
                 .stream()
                 .filter(i -> i % 2 != 0)
                 .collect(Collectors.toList());
-        int count = (int)arrayList
+        int count = (int) arrayList
                 .stream()
                 .filter(i -> i % 2 != 0)
-                .mapToInt((x) -> x)
+                .mapToInt(x -> x)
                 .summaryStatistics()
                 .getCount();
-        return (count / 2 == 0) ? (double)(arrayListEven.get(count / 2) + arrayListEven.get((count / 2) + 1))/2 : (double)(arrayListEven.get((count -1) / 2));
+        return (count % 2 == 0) ? (double) (arrayListEven.get(count / 2) + arrayListEven.get((count / 2) + 1)) / 2 : (double) (arrayListEven.get((count - 1) / 2));
     }
 
     public double getAverageOfEven(List<Integer> arrayList) {
         return arrayList
                 .stream()
                 .filter(i -> i % 2 == 0)
-                .mapToInt((x) -> x)
+                .mapToInt(x -> x)
                 .summaryStatistics()
                 .getAverage();
     }
@@ -108,9 +97,7 @@ public class Add {
         return IntStream
                 .range(0, arrayList.size())
                 .filter(i -> i % 2 == 0)
-                .filter(i -> i == specialElment.intValue())
-                .findAny()
-                .isPresent();
+                .anyMatch(i -> i == specialElment);
 
 
     }
@@ -124,7 +111,7 @@ public class Add {
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        List<Integer> joinedByEvenAndOdd = new ArrayList<Integer>();
+        List<Integer> joinedByEvenAndOdd = new ArrayList<>();
         List<Integer> collectEven = arrayList
                 .stream()
                 .filter(n -> n % 2 == 0)
@@ -142,8 +129,8 @@ public class Add {
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
         ArrayList<Integer> processedList = new ArrayList<>();
-        for(int i = 0; i < arrayList.size() - 1; i++){
-            processedList.add((arrayList.get(i)+ arrayList.get(i+1)) * 3);
+        for (int i = 0; i < arrayList.size() - 1; i++) {
+            processedList.add((arrayList.get(i) + arrayList.get(i + 1)) * 3);
         }
         return processedList;
     }
